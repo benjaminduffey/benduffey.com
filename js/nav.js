@@ -63,7 +63,7 @@ const Nav = (() => {
             </div>
             <p class="footer-desc">Founder, CEO &amp; Lead Engineer at NICE SPACESHIP. Las Vegas, NV.</p>
             <div class="footer-socials">
-              <a href="https://github.com/benduffey" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://github.com/benjaminduffey" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
               <a href="https://www.linkedin.com/in/benduffey/" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
               <a href="https://x.com/benduffey" target="_blank" rel="noopener" title="X"><i class="fa-brands fa-x-twitter"></i></a>
               <a href="https://www.youtube.com/@Greenfishlabs" target="_blank" rel="noopener" title="Greenfish Labs YouTube"><i class="fa-brands fa-youtube"></i></a>
