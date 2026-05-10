@@ -1,0 +1,17 @@
+# Files in this list are NOT uploaded as static assets to Cloudflare.
+# Syntax matches .gitignore.
+
+# Git internals — would otherwise expose local config + full object DB.
+.git/
+
+# Wrangler build artifacts.
+.wrangler/
+
+# Project metadata that's not site content.
+.gitignore
+.assetsignore
+wrangler.jsonc
+
+# Node / build noise (none today, but future-proofing).
+node_modules/
+*.log
