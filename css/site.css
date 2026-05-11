@@ -8,9 +8,9 @@
 
 /* Tokens pulled directly from app theme.css :root */
 :root {
-  --bg: #142849;
-  --bg2: #1a3158;
-  --bg-alt: #1a3158;
+  --bg: #09090b;
+  --bg2: #18181b;
+  --bg-alt: #18181b;
   --surface: #18181b;
   --surface2: #27272a;
   --border: #3f3f46;
@@ -1094,5 +1094,53 @@ div.bd-work-card { cursor: default; } /* non-anchor cards (no video yet) don't l
   margin-top: 8px;
   line-height: var(--lh-base);
   max-width: 640px;
+}
+
+/* ─── NICE brand color (#142849) ───
+   Page background stays near-black for high contrast; navy is applied to
+   elevated surfaces (cards, badges) and primary CTAs to tie back to the
+   NICE SPACESHIP lockup. */
+:root {
+  --brand: #142849;
+  --brand-hi: #1d3661;
+}
+
+/* Cards — brand-tinted panel with a slightly stronger border in the same hue. */
+.feature-card,
+.bd-work-card {
+  background: var(--brand);
+  border-color: rgba(29, 54, 97, 0.6);
+}
+.feature-card:hover,
+a.bd-work-card:hover {
+  background: var(--brand-hi);
+  border-color: rgba(29, 54, 97, 0.9);
+}
+
+/* Section badges — same brand surface so the overline labels read as part
+   of the same NICE-tied palette. */
+.badge {
+  background: var(--brand);
+  border-color: rgba(29, 54, 97, 0.6);
+}
+
+/* Primary buttons — brand fill with white text. The hero's .hero .btn-primary
+   rule (higher specificity, defined earlier with background:transparent + the
+   mythic-rgb-border animation) wins inside the hero, so this only affects
+   primary CTAs in the rest of the page. */
+.btn-primary {
+  background: var(--brand);
+  color: var(--text);
+  border: 1px solid rgba(29, 54, 97, 0.8);
+}
+.btn-primary:hover {
+  background: var(--brand-hi);
+  color: var(--text);
+}
+
+/* Greenfish capability-card icon plate picks up the brand tint too — the
+   default rgba(165,180,252,0.08) periwinkle tint disappears on navy. */
+.feature-card .feature-icon {
+  background: rgba(165, 180, 252, 0.16);
 }
 
