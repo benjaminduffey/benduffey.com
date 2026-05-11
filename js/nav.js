@@ -5,7 +5,6 @@ const Nav = (() => {
   const LINKS = [
     { href: '#about',    label: 'About' },
     { href: '#nice',     label: 'NICE' },
-    { href: '#greenfish', label: 'Greenfish' },
     { href: '#work',     label: 'Work' },
     { href: '#career',   label: 'Career' },
     { href: '#contact',  label: 'Contact' },
