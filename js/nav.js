@@ -27,7 +27,7 @@ const Nav = (() => {
       <nav class="nav">
         <div class="nav-inner">
           <a href="#" class="nav-brand">
-            <span class="nav-brand-text">BENJAMIN DUFFEY</span>
+            <span class="nav-brand-text">BEN DUFFEY</span>
           </a>
           <div class="nav-links" id="nav-links">
             ${LINKS.map(l => `<a href="${l.href}" class="nav-link">${l.label}</a>`).join('')}
@@ -59,7 +59,7 @@ const Nav = (() => {
         <div class="footer-grid">
           <div class="footer-col">
             <div class="footer-brand">
-              <span class="footer-brand-text">BENJAMIN DUFFEY</span>
+              <span class="footer-brand-text">BEN DUFFEY</span>
             </div>
             <p class="footer-desc">Founder, CEO &amp; Lead Engineer at NICE SPACESHIP. Las Vegas, NV.</p>
             <div class="footer-socials">
@@ -88,7 +88,7 @@ const Nav = (() => {
           </div>
         </div>
         <div class="footer-bottom">
-          <span>&copy; ${year} Benjamin Duffey</span>
+          <span>&copy; ${year} Ben Duffey</span>
           <a class="footer-launch" href="https://nicespaceship.com" target="_blank" rel="noopener">${FOOTER_GLYPH_SVG}<span>NICE SPACESHIP</span></a>
         </div>
       </div>
