@@ -66,7 +66,6 @@ const Nav = (() => {
               <a href="https://github.com/benjaminduffey" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
               <a href="https://www.linkedin.com/company/nicespaceship" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
               <a href="https://x.com/nicespaceship" target="_blank" rel="noopener" title="X"><i class="fa-brands fa-x-twitter"></i></a>
-              <a href="https://www.youtube.com/@Greenfishlabs" target="_blank" rel="noopener" title="Greenfish Labs YouTube"><i class="fa-brands fa-youtube"></i></a>
             </div>
           </div>
           <div class="footer-col">
