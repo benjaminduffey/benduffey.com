@@ -111,7 +111,7 @@ p { margin-bottom: 0.75rem; font-size: var(--text-base); line-height: var(--lh-b
 /* ── Layout ── */
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
 .container-narrow { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-.section { padding: 72px 0; border-top: 1px solid var(--border); }
+.section { padding: 72px 0; }
 .text-center { text-align: center; }
 .section-header { margin-bottom: 36px; }
 .section-header.centered { text-align: center; }
@@ -195,6 +195,7 @@ p { margin-bottom: 0.75rem; font-size: var(--text-base); line-height: var(--lh-b
   position: relative; overflow: hidden;
   min-height: 525px;
 }
+
 /* Content-light hero — for pages with just h1 + tagline (e.g. pricing).
    Drops the homepage's 525px min-height to size to its content. */
 .hero.hero-compact { min-height: 0; padding-bottom: 32px; }
@@ -887,8 +888,7 @@ a.docs-card:hover { border-color: var(--accent2); }
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 36px; }
 .about-section h2 { margin-bottom: 16px; }
 .about-section p { color: var(--text-muted); font-size: var(--text-base); }
-.career-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
-.career-item:last-child { border-bottom: none; }
+.career-item { padding: 12px 0; }
 .career-title { font-weight: var(--fw-medium); font-size: var(--text-base); }
 .career-meta { font-size: var(--text-xs); color: var(--text-dim); margin-top: 2px; }
 
@@ -913,7 +913,7 @@ a.docs-card:hover { border-color: var(--accent2); }
 /* ═══════════════════════════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════════════════════════ */
-.footer { border-top: 1px solid var(--border); padding: 48px 0 20px; }
+.footer { padding: 48px 0 20px; }
 .footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
 .footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 36px; margin-bottom: 36px; }
 .footer-col h4 { color: var(--text-dim); font-size: var(--text-xs); margin-bottom: 12px; font-weight: var(--fw-medium); text-transform: uppercase; letter-spacing: var(--tracking-caps); }
@@ -937,7 +937,7 @@ a.docs-card:hover { border-color: var(--accent2); }
 .footer-launch:hover { color: var(--accent); }
 .footer-bottom {
   display: flex; justify-content: space-between; padding-top: 16px;
-  border-top: 1px solid var(--border); font-size: var(--text-xs); color: var(--text-dim);
+  font-size: var(--text-xs); color: var(--text-dim);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -1070,57 +1070,223 @@ a.docs-card:hover { border-color: var(--accent2); }
   .bd-section-title { font-size: var(--text-xl); }
 }
 
-/* Greenfish "5 things I built" grid — 2 cols on tablet+, 1 on mobile. */
-.bd-greenfish-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 32px;
-}
-@media (max-width: 768px) { .bd-greenfish-grid { grid-template-columns: 1fr; } }
+/* ═══════════════════════════════════════════════════════════════════
+   STAGE — fixed NICE constellation icon + ambient rings + timeline
+   ═══════════════════════════════════════════════════════════════════ */
+body { overflow-x: hidden; }
 
-/* Selected Work — 3 cols desktop, 2 tablet, 1 mobile. */
-.bd-work-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 32px;
+.bd-stage {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+  z-index: 0;
 }
-@media (max-width: 1024px) { .bd-work-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px)  { .bd-work-grid { grid-template-columns: 1fr; } }
-
-/* Work cards — extend .feature-card with anchor hover behavior, byline, and
-   a corner tag. Cards link to YouTube where a video exists. */
-.bd-work-card {
-  text-decoration: none;
-  display: block;
+/* Wrapper sized to the mark — handles size + position transitions so the
+   mark itself can run a continuous transform animation undisturbed. */
+.bd-mark-wrap {
   position: relative;
-  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  width: 70vmin; height: 70vmin;
+  transform: translateY(0);
+  transition:
+    width 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
-a.bd-work-card:hover { text-decoration: none; transform: translateY(-2px); transition: transform 0.15s; }
-div.bd-work-card { cursor: default; } /* non-anchor cards (no video yet) don't lift */
-.bd-work-meta {
+.bd-mark-wrap.is-compact {
+  width: 26vmin; height: 26vmin;
+  transform: translateY(-30vh);
+}
+.bd-mark {
+  width: 100%; height: 100%;
+  fill: var(--text);
+  opacity: 0.96;
+  filter: drop-shadow(0 0 80px rgba(15,82,186,0.18));
+  transform-origin: 50% 50%;
+  animation: bd-mark-breath 8s ease-in-out infinite;
+  transition: opacity 0.7s, filter 0.7s;
+}
+.bd-mark-wrap.is-compact .bd-mark {
+  opacity: 0.9;
+  filter: drop-shadow(0 0 40px rgba(15,82,186,0.22));
+}
+
+/* Per-group pulses preserve lattice geometry — no rotation, opacity only. */
+.bd-mark > g      { transform-origin: 2500px 2500px; transform-box: view-box; }
+.bd-mark-core     { animation: bd-mark-glow 6s ease-in-out infinite; }
+.bd-mark-pillars  { animation: bd-mark-glow 4.5s ease-in-out infinite 0.8s; }
+.bd-mark-chevrons { animation: bd-mark-glow 5.5s ease-in-out infinite 1.6s; }
+.bd-mark-orbit    { animation: bd-mark-glow 7s ease-in-out infinite 2.4s; }
+
+@keyframes bd-mark-breath {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.025); }
+}
+@keyframes bd-mark-glow {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.72; }
+}
+
+/* Ambient rings — expand outward in a slow cascade.
+   Sized 100% of the mark wrap so they scale with the mark on compact. */
+.bd-stage-ring {
+  position: absolute; left: 50%; top: 50%;
+  width: 100%; height: 100%;
+  border: 1px solid var(--accent2);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+}
+.bd-stage-ring-1 { animation: bd-ring-pulse 7s ease-out infinite; }
+.bd-stage-ring-2 { animation: bd-ring-pulse 7s ease-out infinite 2.3s; }
+.bd-stage-ring-3 { animation: bd-ring-pulse 7s ease-out infinite 4.6s; }
+
+@keyframes bd-ring-pulse {
+  0%   { transform: translate(-50%, -50%) scale(0.85); opacity: 0.22; }
+  100% { transform: translate(-50%, -50%) scale(1.45); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-mark-orbit, .bd-mark-core, .bd-mark-chevrons, .bd-mark-pillars,
+  .bd-stage-ring-1, .bd-stage-ring-2, .bd-stage-ring-3 { animation: none; }
+}
+
+/* ─── Timeline: minimal right-edge scroll indicator ─── */
+.bd-timeline {
+  position: fixed; right: 24px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 22px;
+  z-index: 40;
+}
+.bd-timeline-item {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.bd-timeline-item:hover { color: var(--text); text-decoration: none; }
+.bd-timeline-label {
   font-size: var(--text-xs);
-  color: var(--text-dim);
+  font-weight: var(--fw-medium);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  margin-bottom: 8px;
+  order: 1;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: none;
+  white-space: nowrap;
 }
-.bd-work-card h3 { color: var(--text); margin-bottom: 8px; font-size: var(--text-md); }
-.bd-work-card p { color: var(--text-muted); font-size: var(--text-sm); margin: 0 0 14px; line-height: var(--lh-base); }
-.bd-work-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: var(--text-xs); color: var(--accent2);
-  font-weight: var(--fw-medium);
+.bd-timeline-dot {
+  order: 2;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--text-muted);
+  opacity: 0.4;
+  transition: background 0.25s, opacity 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.bd-timeline-item:hover .bd-timeline-label,
+.bd-timeline-item.is-active .bd-timeline-label {
+  opacity: 1; transform: translateX(0);
+}
+.bd-timeline-item.is-active .bd-timeline-dot {
+  background: var(--accent);
+  opacity: 1;
+  transform: scale(1.55);
+  box-shadow: 0 0 0 4px rgba(24,98,206,0.16);
+}
+@media (max-width: 768px) {
+  .bd-timeline { display: none; }
 }
 
-/* Career description sits under .career-meta, matches the prose voice but
-   smaller so the timeline reads compactly. */
-.bd-career-desc {
-  font-size: var(--text-sm);
-  color: var(--text-muted);
-  margin-top: 8px;
+/* ─── Stops: full-viewport sections, content reveals on scroll ─── */
+.bd-main { position: relative; z-index: 1; }
+.bd-stop {
+  min-height: 100vh;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding: 80px 24px 8vh;
+  position: relative;
+}
+.bd-stop-hero {
+  min-height: 100vh;
+  align-items: center;
+}
+.bd-stop-content {
+  width: 100%;
+  max-width: 600px;
+  padding: 28px 32px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.bd-stop.is-visible .bd-stop-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+.bd-stop-eyebrow {
+  display: inline-block;
+  font-size: var(--text-xs); font-weight: var(--fw-medium);
+  text-transform: uppercase; letter-spacing: var(--tracking-caps);
+  color: var(--accent2);
+  margin-bottom: 14px;
+}
+.bd-stop-content h2 {
+  font-size: var(--text-2xl); font-weight: var(--fw-bold);
+  line-height: var(--lh-snug); letter-spacing: var(--tracking-display);
+  margin-bottom: 14px;
+}
+.bd-stop-content p {
+  font-size: var(--text-md); color: var(--text-muted);
   line-height: var(--lh-base);
-  max-width: 640px;
+  margin-bottom: 20px;
+}
+.bd-stop-list {
+  list-style: none; padding: 0; margin: 16px 0 0;
+  display: grid; gap: 10px;
+}
+.bd-stop-list li {
+  font-size: var(--text-sm); color: var(--text-muted);
+  line-height: var(--lh-base);
+  padding: 10px 14px;
+  border-left: 2px solid var(--accent2);
+  background: var(--surface2);
+  border-radius: 4px;
+}
+.bd-stop-list li strong {
+  color: var(--text); display: block;
+  font-weight: var(--fw-medium);
+  margin-bottom: 2px;
+}
+.bd-stop-ctas {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Scroll hint at the bottom of the hero stop */
+.bd-scroll-hint {
+  position: absolute;
+  left: 50%; bottom: 32px;
+  transform: translateX(-50%);
+  font-size: var(--text-xs);
+  text-transform: uppercase; letter-spacing: var(--tracking-caps);
+  color: var(--text-muted);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  animation: bd-hint-bob 2.4s ease-in-out infinite;
+  opacity: 0.7;
+}
+@keyframes bd-hint-bob {
+  0%, 100% { transform: translate(-50%, 0); }
+  50%      { transform: translate(-50%, 6px); }
+}
+
+@media (max-width: 768px) {
+  .bd-mark { width: 60vmin; height: 60vmin; }
+  .bd-mark.is-compact { width: 28vmin; height: 28vmin; transform: translateY(-28vh); }
+  .bd-stop-content { padding: 22px 20px; }
 }
 
