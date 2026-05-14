@@ -3,134 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ben Duffey: Founder, CEO &amp; Lead Engineer at NICE SPACESHIP</title>
-  <meta name="description" content="Ben Duffey is the solo technical founder of NICE SPACESHIP. Programming, system architecture, agentic workflows, schematics, blueprints, and AI integration end to end." />
+  <title>Ben Duffey: Founder &amp; Chief Engineer at NICE SPACESHIP</title>
+  <meta name="description" content="Chat with Ben Duffey's AI assistant. Ben is the solo technical founder of NICE SPACESHIP. Ask about his work, NICE, or anything else." />
   <meta name="author" content="Ben Duffey" />
   <link rel="canonical" href="https://benduffey.com/" />
   <link rel="icon" href="/assets/nice-mark.svg" type="image/svg+xml" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Ben Duffey: Founder, CEO &amp; Lead Engineer at NICE SPACESHIP" />
-  <meta property="og:description" content="Solo technical founder of NICE SPACESHIP. Programming, architecture, agentic workflows, schematics, blueprints, and AI integration end to end." />
+  <meta property="og:title" content="Ben Duffey: Founder &amp; Chief Engineer at NICE SPACESHIP" />
+  <meta property="og:description" content="Chat with Ben Duffey's AI assistant. Ask about his work, NICE SPACESHIP, or anything else." />
   <meta property="og:url" content="https://benduffey.com/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400&family=Orbitron:wght@900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400&family=Orbitron:wght@900&family=Antonio:wght@400;700&family=Exo+2:wght@400;600;700&family=Share+Tech+Mono&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="/css/site.css?v=6" />
+  <link rel="stylesheet" href="/css/themes.css?v=1" />
+  <link rel="stylesheet" href="/css/app.css?v=2" />
 </head>
-<body>
-  <header id="site-header"></header>
+<body data-theme="nice">
+  <div class="app">
+    <!-- ─── Sidebar: chats list + brand footer ────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-tabs">
+        <button class="tab is-active" type="button" aria-current="page">
+          <i class="fa-regular fa-comment-dots"></i> <span>Chat</span>
+        </button>
+      </div>
 
-  <!-- Fixed stage: the NICE constellation icon, always in view. -->
-  <div class="bd-stage" aria-hidden="true">
-    <div class="bd-mark-wrap">
-      <div class="bd-stage-ring bd-stage-ring-1"></div>
-      <div class="bd-stage-ring bd-stage-ring-2"></div>
-      <div class="bd-stage-ring bd-stage-ring-3"></div>
-      <svg class="bd-mark" viewBox="0 0 5000 5000" preserveAspectRatio="xMidYMid meet">
-      <g class="bd-mark-orbit">
-        <path d="M2467.2,673.2c345.58-32.47,524.02,397,258.68,618.68-180.13,150.49-459.08,78.97-546.6-137.16-87.17-215.28,55.93-459.73,287.92-481.52Z"/>
-        <path d="M3537.4,2014.6c-177.73-177.72-114.08-485.01,120.51-574.69,274.93-105.11,544.87,148.19,461.85,429.85-73.68,249.96-398.06,329.14-582.35,144.85Z"/>
-        <path d="M3763.2,2905.2c246.91-17.2,431.6,227.75,353.89,461.89-87.4,263.37-443.86,323.54-610.74,100.57-168.07-224.56-21.82-543.04,256.85-562.46Z"/>
-        <path d="M2463.17,3633.17c348.87-33.89,529.56,395.76,262.71,618.71-179.73,150.16-459.24,78.58-546.6-137.16-85.98-212.33,54.43-459.26,283.89-481.55Z"/>
-        <path d="M1203.18,2905.19c275.09-15.44,457.71,280.84,322.9,522.88-119.67,214.87-425.07,238.14-577.97,45.82-177.41-223.16-28.22-552.8,255.07-568.7Z"/>
-        <path d="M1187.2,1409.2c279.69-26.25,476.07,269.48,341.49,517.49-117.32,216.2-419.09,243.76-576.57,55.2-178.93-214.25-41.59-546.72,235.08-572.68Z"/>
-      </g>
-      <g class="bd-mark-pillars">
-        <path d="M1272,2204v604c-33.72-4.09-66.28-4.09-100,0v-604c31.79,6.4,68.34,6.38,100,0Z"/>
-        <path d="M3836,2808c-34.42-3.47-65.53-5.37-100,0v-596c2.93-1.06,4.78,4,6,4h84c1.4,0,4.44-7.1,10,2v590Z"/>
-      </g>
-      <g class="bd-mark-chevrons">
-        <polygon points="3375.95 1580 2868.23 1291.66 2912.04 1203.99 3418.07 1491.98 3423.59 1497.98 3375.95 1580"/>
-        <polygon points="2139.99 1291.94 1637.96 1579.88 1588.37 1497.36 2086.75 1204.5 2095.49 1210.49 2139.99 1291.94"/>
-        <path d="M2139.98,3712.08c2.15,3.03-33.45,55.51-38.18,63.72-4.14,7.19-5.9,25.29-15.33,23.83l-494.1-289.2,43.94-82.16,11.78,1.54,491.88,282.27Z"/>
-        <path d="M3366,3424.08l45.38,82.85-3.37,11.08-492.12,280.28c-7.13-25.22-36.8-54.55-44.83-75.52-1.4-3.67-4.89-6.66-1.38-10.87l496.32-287.83Z"/>
-      </g>
-      <g class="bd-mark-core">
-        <path d="M2447.2,1853.2c550.99-42.77,908.61,573.22,585.69,1025.69-276.72,387.72-866.37,355.58-1097.57-60.2-228.12-410.24,44.43-929.2,511.88-965.49ZM2455.2,1953.2c-427.55,33.48-653.11,541.85-388.78,882.39,257.89,332.24,777.21,269.58,942.28-116.89,164.38-384.87-139.97-797.88-553.5-765.5Z"/>
-        <path d="M2483.19,2101.18c280.93-16.74,488.07,258.72,401.96,525.96-85.83,266.35-424.89,363.36-639.04,180.75-276.2-235.52-124.03-685.19,237.08-706.71Z"/>
-      </g>
-      </svg>
-    </div>
+      <div class="sidebar-section">
+        <div class="sidebar-section-header">
+          <span class="sidebar-section-title">Chats</span>
+          <button class="icon-btn" id="btn-new-chat" title="New chat" aria-label="New chat">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div class="chat-list" id="chat-list" role="list"></div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="brand-text">BEN DUFFEY</div>
+        <div class="brand-title">Founder, Chief Engineer</div>
+        <a class="brand-launch" href="https://nicespaceship.com" target="_blank" rel="noopener">
+          <svg class="brand-launch-icon" viewBox="0 0 5000 5000" fill="currentColor" aria-hidden="true">
+            <path d="M2467.2,673.2c345.58-32.47,524.02,397,258.68,618.68-180.13,150.49-459.08,78.97-546.6-137.16-87.17-215.28,55.93-459.73,287.92-481.52Z"/>
+            <path d="M3537.4,2014.6c-177.73-177.72-114.08-485.01,120.51-574.69,274.93-105.11,544.87,148.19,461.85,429.85-73.68,249.96-398.06,329.14-582.35,144.85Z"/>
+            <path d="M3763.2,2905.2c246.91-17.2,431.6,227.75,353.89,461.89-87.4,263.37-443.86,323.54-610.74,100.57-168.07-224.56-21.82-543.04,256.85-562.46Z"/>
+            <path d="M2463.17,3633.17c348.87-33.89,529.56,395.76,262.71,618.71-179.73,150.16-459.24,78.58-546.6-137.16-85.98-212.33,54.43-459.26,283.89-481.55Z"/>
+            <path d="M1203.18,2905.19c275.09-15.44,457.71,280.84,322.9,522.88-119.67,214.87-425.07,238.14-577.97,45.82-177.41-223.16-28.22-552.8,255.07-568.7Z"/>
+            <path d="M1187.2,1409.2c279.69-26.25,476.07,269.48,341.49,517.49-117.32,216.2-419.09,243.76-576.57,55.2-178.93-214.25-41.59-546.72,235.08-572.68Z"/>
+            <path d="M2447.2,1853.2c550.99-42.77,908.61,573.22,585.69,1025.69-276.72,387.72-866.37,355.58-1097.57-60.2-228.12-410.24,44.43-929.2,511.88-965.49ZM2455.2,1953.2c-427.55,33.48-653.11,541.85-388.78,882.39,257.89,332.24,777.21,269.58,942.28-116.89,164.38-384.87-139.97-797.88-553.5-765.5Z"/>
+            <path d="M1272,2204v604c-33.72-4.09-66.28-4.09-100,0v-604c31.79,6.4,68.34,6.38,100,0Z"/>
+            <path d="M3836,2808c-34.42-3.47-65.53-5.37-100,0v-596c2.93-1.06,4.78,4,6,4h84c1.4,0,4.44-7.1,10,2v590Z"/>
+            <polygon points="3375.95 1580 2868.23 1291.66 2912.04 1203.99 3418.07 1491.98 3423.59 1497.98 3375.95 1580"/>
+            <polygon points="2139.99 1291.94 1637.96 1579.88 1588.37 1497.36 2086.75 1204.5 2095.49 1210.49 2139.99 1291.94"/>
+            <path d="M2139.98,3712.08c2.15,3.03-33.45,55.51-38.18,63.72-4.14,7.19-5.9,25.29-15.33,23.83l-494.1-289.2,43.94-82.16,11.78,1.54,491.88,282.27Z"/>
+            <path d="M3366,3424.08l45.38,82.85-3.37,11.08-492.12,280.28c-7.13-25.22-36.8-54.55-44.83-75.52-1.4-3.67-4.89-6.66-1.38-10.87l496.32-287.83Z"/>
+            <path d="M2483.19,2101.18c280.93-16.74,488.07,258.72,401.96,525.96-85.83,266.35-424.89,363.36-639.04,180.75-276.2-235.52-124.03-685.19,237.08-706.71Z"/>
+          </svg>
+          <span>NICE SPACESHIP</span>
+        </a>
+        <a class="brand-email" href="mailto:ben@nicespaceship.com">ben@nicespaceship.com</a>
+      </div>
+    </aside>
+
+    <!-- ─── Main panel: chat ───────────────────────────────────────────────── -->
+    <main class="chat">
+      <header class="chat-header">
+        <button class="icon-btn sidebar-toggle" id="btn-sidebar-toggle" aria-label="Toggle sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="chat-title" id="chat-title"></div>
+        <div class="chat-controls">
+          <div class="theme-cycler">
+            <button class="icon-btn" id="btn-theme" aria-label="Change theme" title="Change theme">
+              <i class="fa-solid fa-palette"></i>
+            </button>
+            <div class="theme-menu" id="theme-menu" role="menu" hidden></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="messages" id="messages" role="log" aria-live="polite"></div>
+
+      <form class="prompt-panel" id="prompt-form">
+        <textarea
+          id="prompt-input"
+          class="prompt-input"
+          placeholder="Ask me anything…"
+          rows="1"
+          autocomplete="off"
+          autocorrect="on"
+          spellcheck="true"
+        ></textarea>
+        <div class="prompt-bar">
+          <span class="model-badge"><i class="fa-solid fa-circle"></i> Gemini 2.5 Flash</span>
+          <button class="btn-send" id="btn-send" type="submit" aria-label="Send" disabled>
+            <i class="fa-solid fa-arrow-up"></i>
+          </button>
+        </div>
+      </form>
+    </main>
   </div>
 
-  <!-- Side timeline: section progress indicator -->
-  <nav class="bd-timeline" aria-label="Page sections">
-    <a href="#intro" class="bd-timeline-item is-active" data-section="intro">
-      <span class="bd-timeline-label">Intro</span>
-      <span class="bd-timeline-dot"></span>
-    </a>
-    <a href="#capabilities" class="bd-timeline-item" data-section="capabilities">
-      <span class="bd-timeline-label">Capabilities</span>
-      <span class="bd-timeline-dot"></span>
-    </a>
-    <a href="#nice" class="bd-timeline-item" data-section="nice">
-      <span class="bd-timeline-label">NICE</span>
-      <span class="bd-timeline-dot"></span>
-    </a>
-    <a href="#contact" class="bd-timeline-item" data-section="contact">
-      <span class="bd-timeline-label">Contact</span>
-      <span class="bd-timeline-dot"></span>
-    </a>
-  </nav>
-
-  <main class="bd-main">
-    <section id="intro" class="bd-stop bd-stop-hero">
-      <div class="bd-scroll-hint">
-        <span>Scroll</span>
-        <i class="fa-solid fa-chevron-down"></i>
-      </div>
-    </section>
-
-    <section id="capabilities" class="bd-stop">
-      <div class="bd-stop-content">
-        <span class="bd-stop-eyebrow">Capabilities</span>
-        <h2>What it takes to ship a platform solo.</h2>
-        <p>Ben designed and shipped NICE end to end. That stack of skills, condensed:</p>
-        <ul class="bd-stop-list">
-          <li><strong>Programming &amp; engineering</strong>JavaScript, TypeScript, Python, SQL, Bash, Deno. Vanilla-JS SPA, no build step.</li>
-          <li><strong>System architecture</strong>SPA frontend, Postgres with row-level security, edge-function backend, OAuth flows, MCP gateway, mission state machine.</li>
-          <li><strong>Software &amp; infrastructure</strong>15 Supabase edge functions in production. Multi-provider LLM proxy. Stripe pipeline. PWA. Cloudflare edge.</li>
-          <li><strong>Agentic workflows &amp; orchestration</strong>Mission engine, DAG execution, ReAct loop, multi-agent coordination across pipeline, parallel, triage, and quality-loop nodes.</li>
-          <li><strong>Schematics &amp; blueprints</strong>Designed the blueprint primitive: catalog of pre-built agent and ship templates, rarity progression, gamified XP, custom builder.</li>
-          <li><strong>AI &amp; LLM integration</strong>Gemini, Claude, GPT, Grok, Llama. Tool use, function calling, attachment handling, soft-fallback. MCP gateway for SaaS.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="nice" class="bd-stop">
-      <div class="bd-stop-content">
-        <span class="bd-stop-eyebrow">NICE SPACESHIP</span>
-        <h2>Neural Intelligence Command Engine.</h2>
-        <p>A full agentic AI platform that lets anyone deploy fleets of AI agents without touching an API key or writing code. Free tier on Gemini 2.5 Flash. Premium tiers unlock Claude, GPT, Grok, and Llama. 500+ pre-built blueprints. Native MCP integrations with every major SaaS tool. Open source, MIT licensed.</p>
-        <div class="bd-stop-ctas">
-          <a href="https://nicespaceship.com" target="_blank" rel="noopener" class="btn-primary"><i class="fa-solid fa-globe"></i> nicespaceship.com</a>
-          <a href="https://nicespaceship.ai" target="_blank" rel="noopener" class="btn-secondary"><i class="fa-solid fa-rocket"></i> Launch NICE</a>
-          <a href="https://github.com/nicespaceship/nice" target="_blank" rel="noopener" class="btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="bd-stop">
-      <div class="bd-stop-content">
-        <span class="bd-stop-eyebrow">Contact</span>
-        <h2>Get in touch.</h2>
-        <p>Ben welcomes conversations about agentic AI, technical-founder collaborations, and engineering work that requires building the tool first. Email is the best path.</p>
-        <div class="bd-stop-ctas">
-          <a href="mailto:ben@nicespaceship.com" class="btn-primary"><i class="fa-solid fa-envelope"></i> ben@nicespaceship.com</a>
-          <a href="https://github.com/benjaminduffey" target="_blank" rel="noopener" class="btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer id="site-footer" class="footer"></footer>
-
-  <script src="/js/theme-lite.js?v=3"></script>
-  <script src="/js/nav.js?v=3"></script>
-  <script src="/js/stage.js?v=2"></script>
-  <script>ThemeLite.init(); Nav.render(); Nav.renderFooter(); Stage.init();</script>
+  <script src="/js/theme.js?v=1"></script>
+  <script src="/js/chat.js?v=1"></script>
+  <script src="/js/app.js?v=2"></script>
 </body>
 </html>
