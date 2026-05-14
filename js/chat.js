@@ -104,30 +104,34 @@ const Chat = (() => {
 
   // ─── Rendering: messages ─────────────────────────────────────────────
   const STARTERS = [
-    'What does Ben do?',
-    'Tell me about NICE SPACESHIP',
-    'How can I hire Ben?',
-    'What can you do?',
+    { text: 'What does Ben do?',            icon: 'fa-solid fa-user' },
+    { text: 'Tell me about NICE SPACESHIP', icon: 'fa-solid fa-rocket' },
+    { text: 'How can I hire Ben?',          icon: 'fa-solid fa-briefcase' },
+    { text: 'What can you do?',             icon: 'fa-solid fa-wand-magic-sparkles' },
   ];
 
   function _renderMessages() {
     const wrap = document.getElementById('messages');
     const titleEl = document.getElementById('chat-title');
+    const greetingEl = document.getElementById('welcome-greeting');
+    const chipsEl = document.getElementById('welcome-chips');
     if (!wrap) return;
     const c = active();
+    const isEmpty = !c || c.messages.length === 0;
 
-    if (titleEl) titleEl.textContent = c ? c.title : '';
+    // Empty state centers the greeting + prompt box + chips; conversation
+    // state drops the prompt box to the bottom and shows the message log.
+    document.body.classList.toggle('chat-empty', isEmpty);
+    if (titleEl) titleEl.textContent = isEmpty ? '' : c.title;
 
-    if (!c || c.messages.length === 0) {
-      const greeting = _greeting();
-      wrap.innerHTML = `
-        <div class="welcome">
-          <h1 class="welcome-greeting">${escapeHtml(greeting)}</h1>
-          <p class="welcome-subtitle">Ask me about Ben Duffey, NICE SPACESHIP, or anything else.</p>
-          <div class="welcome-prompts">
-            ${STARTERS.map((p) => `<button type="button" class="starter-prompt" data-prompt="${escapeHtml(p)}">${escapeHtml(p)}</button>`).join('')}
-          </div>
-        </div>`;
+    if (isEmpty) {
+      if (greetingEl) greetingEl.textContent = _greeting();
+      if (chipsEl) {
+        chipsEl.innerHTML = STARTERS.map((s) =>
+          `<button type="button" class="chip" data-prompt="${escapeHtml(s.text)}"><i class="${s.icon}"></i>${escapeHtml(s.text)}</button>`
+        ).join('');
+      }
+      wrap.innerHTML = '';
       return;
     }
 
@@ -155,9 +159,9 @@ const Chat = (() => {
 
   function _greeting() {
     const h = new Date().getHours();
-    if (h < 12) return 'Good morning.';
-    if (h < 18) return 'Good afternoon.';
-    return 'Good evening.';
+    if (h < 12) return 'Good morning';
+    if (h < 18) return 'Good afternoon';
+    return 'Good evening';
   }
 
   // ─── Sending a message ───────────────────────────────────────────────
@@ -295,16 +299,16 @@ const Chat = (() => {
 
     document.getElementById('btn-new-chat')?.addEventListener('click', newChat);
 
-    // Welcome starter prompts
-    document.getElementById('messages')?.addEventListener('click', (e) => {
-      const sp = e.target.closest('.starter-prompt');
-      if (sp) {
+    // Welcome starter chips
+    document.getElementById('welcome-chips')?.addEventListener('click', (e) => {
+      const chip = e.target.closest('.chip');
+      if (chip) {
         const input = document.getElementById('prompt-input');
         if (input) {
-          input.value = sp.dataset.prompt;
+          input.value = chip.dataset.prompt;
           input.dispatchEvent(new Event('input'));
         }
-        send(sp.dataset.prompt);
+        send(chip.dataset.prompt);
       }
     });
 
