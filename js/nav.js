@@ -3,11 +3,9 @@
    "Visit NICE SPACESHIP" CTA points to the company site. */
 const Nav = (() => {
   const LINKS = [
-    { href: '#about',    label: 'About' },
-    { href: '#nice',     label: 'NICE' },
-    { href: '#work',     label: 'Work' },
-    { href: '#career',   label: 'Career' },
-    { href: '#contact',  label: 'Contact' },
+    { href: '#capabilities', label: 'Capabilities' },
+    { href: '#nice',         label: 'NICE' },
+    { href: '#contact',      label: 'Contact' },
   ];
 
   // NICE constellation mark — shared with nicespaceship.com so the visual
@@ -70,11 +68,9 @@ const Nav = (() => {
           </div>
           <div class="footer-col">
             <h4>Sections</h4>
-            <a href="#about">About</a>
+            <a href="#capabilities">Capabilities</a>
             <a href="#nice">NICE SPACESHIP</a>
-            <a href="#greenfish">Greenfish Labs</a>
-            <a href="#work">Selected Work</a>
-            <a href="#career">Career</a>
+            <a href="#contact">Contact</a>
           </div>
           <div class="footer-col">
             <h4>NICE SPACESHIP</h4>
