@@ -115,6 +115,7 @@ const Chat = (() => {
     const titleEl = document.getElementById('chat-title');
     const greetingEl = document.getElementById('welcome-greeting');
     const chipsEl = document.getElementById('welcome-chips');
+    const inputEl = document.getElementById('prompt-input');
     if (!wrap) return;
     const c = active();
     const isEmpty = !c || c.messages.length === 0;
@@ -123,6 +124,11 @@ const Chat = (() => {
     // state drops the prompt box to the bottom and shows the message log.
     document.body.classList.toggle('chat-empty', isEmpty);
     if (titleEl) titleEl.textContent = isEmpty ? '' : c.title;
+    if (inputEl) {
+      inputEl.placeholder = isEmpty
+        ? 'Ask me about Ben, NICE SPACESHIP, or anything…'
+        : 'Reply to Computer…';
+    }
 
     if (isEmpty) {
       if (greetingEl) greetingEl.textContent = _greeting();

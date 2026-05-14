@@ -129,6 +129,33 @@ a:hover { text-decoration: underline; }
 }
 .sidebar-collapse { flex-shrink: 0; }
 
+/* New-chat nav row — Claude-style: a full-width row below the header,
+   not an icon tucked into the chats section header. */
+.sidebar-nav { padding: 2px 12px 0; }
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  border-radius: var(--radius);
+  text-align: left;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-row:hover { background: var(--surface2); }
+.nav-row i {
+  width: 16px;
+  font-size: 0.9em;
+  text-align: center;
+  color: var(--text-muted);
+  transition: color 0.15s;
+}
+.nav-row:hover i { color: var(--text); }
+
 .sidebar-section {
   flex: 1;
   display: flex;
@@ -275,7 +302,9 @@ a:hover { text-decoration: underline; }
 body.chat-empty .chat-body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* `safe` keeps the greeting + prompt centered, but falls back to
+     top-aligned when the window is too short so nothing clips. */
+  justify-content: safe center;
   align-items: center;
   gap: 22px;
   padding: 32px 24px;

@@ -17,6 +17,10 @@ wrangler.jsonc
 package.json
 package-lock.json
 
+# OG image generation source — rendered to assets/og.png, not served itself.
+# See the header of assets/og-card.html for the regeneration command.
+assets/og-card.html
+
 # Node / build noise (none today, but future-proofing).
 node_modules/
 *.log
