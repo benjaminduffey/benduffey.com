@@ -266,7 +266,11 @@ a:hover { text-decoration: underline; }
   display: grid;
   grid-template-rows: auto 1fr;
   background: var(--bg);
+  /* min-height:0 lets .chat shrink to .app's row height instead of growing
+     to fit a long conversation — without it the messages scroll area and the
+     prompt box get pushed off the bottom of the viewport. */
   min-width: 0;
+  min-height: 0;
   position: relative;
 }
 
