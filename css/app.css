@@ -525,6 +525,10 @@ body.chat-empty .prompt-form { padding: 0; }
   .sidebar-toggle { display: inline-flex; }
   .messages { padding: 24px 16px; }
   .prompt-form { padding: 12px 16px 18px; }
+  /* iOS Safari zooms the page when a focused input's font-size is under
+     16px and doesn't zoom back out. 16px on mobile stops it from triggering;
+     desktop keeps the --text-base scale. */
+  .prompt-input { font-size: 16px; }
   .welcome-greeting { font-size: var(--text-xl); }
 }
 
