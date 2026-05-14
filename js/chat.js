@@ -106,7 +106,7 @@ const Chat = (() => {
   const STARTERS = [
     { text: 'What does Ben do?',            icon: 'fa-solid fa-user' },
     { text: 'Tell me about NICE SPACESHIP', icon: 'fa-solid fa-rocket' },
-    { text: 'How can I hire Ben?',          icon: 'fa-solid fa-briefcase' },
+    { text: 'How do I contact Ben?',        icon: 'fa-solid fa-envelope' },
     { text: 'What can you do?',             icon: 'fa-solid fa-wand-magic-sparkles' },
   ];
 
