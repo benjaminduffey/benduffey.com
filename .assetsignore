@@ -7,10 +7,15 @@
 # Wrangler build artifacts.
 .wrangler/
 
+# Worker source — runs in the Worker runtime, not served as a static asset.
+src/
+
 # Project metadata that's not site content.
 .gitignore
 .assetsignore
 wrangler.jsonc
+package.json
+package-lock.json
 
 # Node / build noise (none today, but future-proofing).
 node_modules/

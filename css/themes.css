@@ -1,0 +1,359 @@
+/* ═══════════════════════════════════════════════════════════════════
+   benduffey.com — Theme Tokens (vendored from NICE)
+   SSOT note: variable values are mirrored from the nice repo
+     (public/css/theme.css + app/css/app.css). When NICE updates a
+     skin, copy the new values into the matching block below.
+═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Typography tokens (theme-agnostic, minor-third 1.2× scale) ──── */
+:root {
+  --text-xs:   0.6875rem;
+  --text-sm:   0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md:   1.0625rem;
+  --text-lg:   1.25rem;
+  --text-xl:   1.5rem;
+  --text-2xl:  2rem;
+  --text-3xl:  clamp(2.25rem, 4vw, 3rem);
+
+  --lh-tight: 1.15;
+  --lh-snug:  1.35;
+  --lh-base:  1.55;
+
+  --tracking-display: -0.01em;
+  --tracking-normal:  0;
+  --tracking-caps:    0.08em;
+
+  --fw-regular: 400;
+  --fw-medium:  600;
+  --fw-bold:    700;
+
+  /* Layout constants */
+  --sidebar-w: 280px;
+  --max-msg-w: 760px;
+}
+
+/* ─── NICE — light, Sapphire accent (default) ───────────────────────── */
+:root,
+[data-theme="nice"] {
+  --bg:          #ffffff;
+  --bg2:         #fafafa;
+  --bg-alt:      #fafafa;
+  --surface:     #ffffff;
+  --surface2:    #f5f5f5;
+  --border:      #e5e5e5;
+  --border-hi:   #d4d4d4;
+  --accent:      #1862ce;
+  --accent2:     #0F52BA;
+  --text:        #0a0a0a;
+  --text-muted:  #525252;
+  --text-dim:    #a3a3a3;
+  --glow:        0 0 0 1px rgba(15,82,186,0.06);
+  --panel-bg:    rgba(255,255,255,0.92);
+  --nav-bg:      rgba(255,255,255,0.92);
+  --user-msg-bg: #1862ce;
+  --user-msg-fg: #ffffff;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Inter', sans-serif;
+  --font-b:      'Inter', sans-serif;
+  --font-m:      'Fira Code', monospace;
+  --font-brand:  'Orbitron', sans-serif;
+  --radius:      10px;
+  --scan:        0;
+}
+
+/* ─── NICE Dark — same Sapphire accent, near-black surfaces ─────────── */
+[data-theme="nice-dark"] {
+  --bg:          #0a0a0a;
+  --bg2:         #121212;
+  --bg-alt:      #121212;
+  --surface:     #141414;
+  --surface2:    #1a1a1a;
+  --border:      #262626;
+  --border-hi:   #3a3a3a;
+  --accent:      #1862ce;
+  --accent2:     #0F52BA;
+  --text:        #f5f5f5;
+  --text-muted:  #a3a3a3;
+  --text-dim:    #525252;
+  --glow:        0 0 0 1px rgba(15,82,186,0.16);
+  --panel-bg:    rgba(10,10,10,0.92);
+  --nav-bg:      rgba(10,10,10,0.92);
+  --user-msg-bg: #1862ce;
+  --user-msg-fg: #ffffff;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Inter', sans-serif;
+  --font-b:      'Inter', sans-serif;
+  --font-m:      'Fira Code', monospace;
+  --font-brand:  'Orbitron', sans-serif;
+  --radius:      10px;
+  --scan:        0;
+}
+
+/* ─── HAL-9000 — black, glowing red eye ─────────────────────────────── */
+[data-theme="hal-9000"] {
+  --bg:          #000000;
+  --bg2:         #0a0a0a;
+  --bg-alt:      #0a0a0a;
+  --surface:     #121212;
+  --surface2:    #1a1a1a;
+  --border:      #2a2a2a;
+  --border-hi:   #8a8a90;
+  --accent:      #ef4444;
+  --accent2:     #b0b0b6;
+  --text:        #f5f5f5;
+  --text-muted:  #8a8a90;
+  --text-dim:    #4a4a4e;
+  --glow:        0 0 12px rgba(239,68,68,0.25);
+  --panel-bg:    rgba(0,0,0,0.92);
+  --nav-bg:      rgba(0,0,0,0.92);
+  --user-msg-bg: rgba(239,68,68,0.18);
+  --user-msg-fg: #f5f5f5;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Inter', sans-serif;
+  --font-b:      'Inter', sans-serif;
+  --font-m:      'Fira Code', monospace;
+  --font-brand:  'Orbitron', sans-serif;
+  --radius:      4px;
+  --scan:        0;
+}
+
+/* ─── The Grid — TRON cyan on deep navy ─────────────────────────────── */
+[data-theme="grid"] {
+  --bg:          #02090f;
+  --bg2:         #041220;
+  --bg-alt:      #041220;
+  --surface:     rgba(0,200,240,0.05);
+  --surface2:    rgba(0,200,240,0.09);
+  --border:      rgba(0,229,255,0.25);
+  --border-hi:   rgba(0,229,255,0.6);
+  --accent:      #00e5ff;
+  --accent2:     #0099bb;
+  --text:        #cce8f0;
+  --text-muted:  rgba(0,229,255,0.55);
+  --text-dim:    rgba(0,229,255,0.25);
+  --glow:        0 0 16px rgba(0,229,255,0.22);
+  --panel-bg:    rgba(2,9,15,0.95);
+  --nav-bg:      rgba(2,9,15,0.97);
+  --user-msg-bg: rgba(0,229,255,0.12);
+  --user-msg-fg: #cce8f0;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Orbitron', sans-serif;
+  --font-b:      'Inter', sans-serif;
+  --font-m:      'Fira Code', monospace;
+  --font-brand:  'Orbitron', sans-serif;
+  --radius:      2px;
+  --scan:        0.055;
+}
+
+/* ─── The Matrix — phosphor green digital rain ──────────────────────── */
+[data-theme="matrix"] {
+  --bg:          #000800;
+  --bg2:         #000c00;
+  --bg-alt:      #000c00;
+  --surface:     rgba(0,255,65,0.04);
+  --surface2:    rgba(0,255,65,0.08);
+  --border:      rgba(0,255,65,0.2);
+  --border-hi:   rgba(0,255,65,0.5);
+  --accent:      #00ff41;
+  --accent2:     #00aa2a;
+  --text:        #00ff41;
+  --text-muted:  rgba(0,255,65,0.55);
+  --text-dim:    rgba(0,255,65,0.28);
+  --glow:        0 0 12px rgba(0,255,65,0.3);
+  --panel-bg:    rgba(0,6,0,0.97);
+  --nav-bg:      rgba(0,5,0,0.98);
+  --user-msg-bg: rgba(0,255,65,0.1);
+  --user-msg-fg: #00ff41;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Fira Code', monospace;
+  --font-b:      'Fira Code', monospace;
+  --font-m:      'Fira Code', monospace;
+  --font-brand:  'Fira Code', monospace;
+  --radius:      0px;
+  --scan:        0.08;
+}
+
+/* ─── LCARS — Star Trek butterscotch + violet on black ──────────────── */
+[data-theme="lcars"] {
+  --bg:          #000000;
+  --bg2:         #000000;
+  --bg-alt:      #000000;
+  --surface:     rgba(255,153,102,0.06);
+  --surface2:    rgba(204,153,255,0.06);
+  --border:      #cc7744;
+  --border-hi:   #ff9966;
+  --accent:      #ff9966;
+  --accent2:     #cc99ff;
+  --text:        #ff9966;
+  --text-muted:  #cc99ff;
+  --text-dim:    rgba(255,153,102,0.4);
+  --glow:        none;
+  --panel-bg:    #000000;
+  --nav-bg:      #000000;
+  --user-msg-bg: rgba(204,153,255,0.18);
+  --user-msg-fg: #ffaa90;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Antonio', sans-serif;
+  --font-b:      'Antonio', sans-serif;
+  --font-m:      'Share Tech Mono', monospace;
+  --font-brand:  'Antonio', sans-serif;
+  --radius:      24px;
+  --scan:        0;
+}
+
+/* ─── J.A.R.V.I.S. — holographic Iron Man arc-reactor blue ──────────── */
+[data-theme="jarvis"] {
+  --bg:          #070d1a;
+  --bg2:         #0c1829;
+  --bg-alt:      #0c1829;
+  --surface:     rgba(0,229,255,0.04);
+  --surface2:    rgba(0,229,255,0.08);
+  --border:      rgba(0,229,255,0.18);
+  --border-hi:   rgba(0,229,255,0.5);
+  --accent:      #00e5ff;
+  --accent2:     #18ffff;
+  --text:        #b2ebf2;
+  --text-muted:  rgba(0,229,255,0.55);
+  --text-dim:    rgba(184,216,240,0.4);
+  --glow:        0 0 16px rgba(0,229,255,0.2);
+  --panel-bg:    rgba(7,13,26,0.95);
+  --nav-bg:      rgba(7,13,26,0.95);
+  --user-msg-bg: rgba(0,229,255,0.12);
+  --user-msg-fg: #e0f7fa;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Exo 2', 'Inter', sans-serif;
+  --font-b:      'Inter', sans-serif;
+  --font-m:      'Fira Code', monospace;
+  --font-brand:  'Exo 2', sans-serif;
+  --radius:      3px;
+  --scan:        0;
+}
+
+/* ─── Cyberpunk — neon pink + cyan on near-black ────────────────────── */
+[data-theme="cyberpunk"] {
+  --bg:          #0a0a0f;
+  --bg2:         #12121a;
+  --bg-alt:      #12121a;
+  --surface:     #1a1a2e;
+  --surface2:    #222240;
+  --border:      #2a2a4a;
+  --border-hi:   #ff2d6f;
+  --accent:      #ff2d6f;
+  --accent2:     #00fff5;
+  --text:        #e0e0ff;
+  --text-muted:  #7a7a9e;
+  --text-dim:    #4a4a6e;
+  --glow:        0 0 15px rgba(255,45,111,0.3);
+  --panel-bg:    rgba(10,10,15,0.97);
+  --nav-bg:      rgba(10,10,15,0.98);
+  --user-msg-bg: rgba(255,45,111,0.18);
+  --user-msg-fg: #fff;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Orbitron', sans-serif;
+  --font-b:      'Fira Code', monospace;
+  --font-m:      'Fira Code', monospace;
+  --font-brand:  'Orbitron', sans-serif;
+  --radius:      2px;
+  --scan:        0;
+}
+
+/* ─── RX-78-2 — Gundam blue + red military ──────────────────────────── */
+[data-theme="rx-78-2"] {
+  --bg:          #0c1722;
+  --bg2:         #14253b;
+  --bg-alt:      #14253b;
+  --surface:     #1c2f4a;
+  --surface2:    #243a5a;
+  --border:      #2c4a72;
+  --border-hi:   #d4252a;
+  --accent:      #d4252a;
+  --accent2:     #ffc832;
+  --text:        #f0f4f8;
+  --text-muted:  #8aa0bc;
+  --text-dim:    #4a607c;
+  --glow:        0 0 10px rgba(212,37,42,0.25);
+  --panel-bg:    rgba(12,23,34,0.95);
+  --nav-bg:      rgba(12,23,34,0.97);
+  --user-msg-bg: rgba(212,37,42,0.18);
+  --user-msg-fg: #f0f4f8;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Orbitron', sans-serif;
+  --font-b:      'Inter', sans-serif;
+  --font-m:      'Fira Code', monospace;
+  --font-brand:  'Orbitron', sans-serif;
+  --radius:      2px;
+  --scan:        0;
+}
+
+/* ─── 16-BIT — retro pixel art, gold on navy ────────────────────────── */
+[data-theme="16bit"] {
+  --bg:          #0a0e2a;
+  --bg2:         #141a3a;
+  --bg-alt:      #141a3a;
+  --surface:     #1c244c;
+  --surface2:    #283060;
+  --border:      #3a4280;
+  --border-hi:   #ffcc33;
+  --accent:      #ffcc33;
+  --accent2:     #ff5577;
+  --text:        #f0f0ff;
+  --text-muted:  #99a0c8;
+  --text-dim:    #5a608a;
+  --glow:        0 0 0 2px rgba(255,204,51,0.2);
+  --panel-bg:    #0a0e2a;
+  --nav-bg:      #0a0e2a;
+  --user-msg-bg: rgba(255,204,51,0.18);
+  --user-msg-fg: #f0f0ff;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Press Start 2P', monospace;
+  --font-b:      'Press Start 2P', monospace;
+  --font-m:      'Press Start 2P', monospace;
+  --font-brand:  'Press Start 2P', monospace;
+  --radius:      0px;
+  --scan:        0;
+}
+
+/* ─── The Office — light/warm corporate ─────────────────────────────── */
+[data-theme="office"] {
+  --bg:          #f5efe6;
+  --bg2:         #ede4d3;
+  --bg-alt:      #ede4d3;
+  --surface:     #ffffff;
+  --surface2:    #faf3e6;
+  --border:      #d4c8b0;
+  --border-hi:   #0a3d78;
+  --accent:      #0a3d78;
+  --accent2:     #c8965a;
+  --text:        #1a2530;
+  --text-muted:  #5a5040;
+  --text-dim:    #a89878;
+  --glow:        none;
+  --panel-bg:    rgba(245,239,230,0.96);
+  --nav-bg:      rgba(245,239,230,0.96);
+  --user-msg-bg: #0a3d78;
+  --user-msg-fg: #ffffff;
+  --asst-msg-bg: transparent;
+  --asst-msg-fg: var(--text);
+  --font-h:      'Inter', sans-serif;
+  --font-b:      'Inter', sans-serif;
+  --font-m:      'Fira Code', monospace;
+  --font-brand:  'Inter', sans-serif;
+  --radius:      9999px;
+  --scan:        0;
+}
+
+/* ─── Reduced-motion: kill scanline + decorative animations ─────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
