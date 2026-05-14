@@ -136,7 +136,7 @@ const Chat = (() => {
   }
 
   function _renderMsg(m, idx) {
-    const role = m.role === 'user' ? 'You' : 'NICE';
+    const role = m.role === 'user' ? 'You' : 'Computer';
     const cls = m.role === 'user' ? 'user' : 'assistant';
     const streaming = m._streaming ? 'is-streaming' : '';
     const errorBlock = m.error ? `<div class="message-error">${escapeHtml(m.error)}</div>` : '';
