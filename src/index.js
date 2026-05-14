@@ -7,10 +7,18 @@
  *
  * Secret required:
  *   GOOGLE_AI_API_KEY — set via `wrangler secret put GOOGLE_AI_API_KEY`
+ *
+ * Bindings (see wrangler.jsonc):
+ *   CHAT_RATE_LIMITER — Cloudflare native per-IP rate limiter for /api/chat
+ *   RATE_LIMIT_KV     — KV namespace backing the daily global request cap
  */
 
 const MODEL = 'gemini-2.5-flash';
 const GOOGLE_HOST = 'https://generativelanguage.googleapis.com';
+
+// Daily global cap on /api/chat — a backstop against distributed abuse of the
+// shared Gemini key. Real-time per-IP throttling is handled by CHAT_RATE_LIMITER.
+const DAILY_REQUEST_CAP = 1000;
 
 // System prompt — Gemini knows about Ben + NICE so visitors can ask about either,
 // but answers any general question naturally without forcing the bio in.
@@ -46,21 +54,51 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    if (url.pathname === '/api/chat' && request.method === 'POST') {
-      return handleChat(request, env);
-    }
-
     if (url.pathname === '/api/chat') {
-      return new Response('Method not allowed', { status: 405 });
+      if (request.method !== 'POST') {
+        return new Response('Method not allowed', { status: 405 });
+      }
+      return handleChat(request, env, ctx);
     }
 
-    return env.ASSETS.fetch(request);
+    // Static assets. wrangler.jsonc sets not_found_handling: "none", so a
+    // missing file 404s cleanly instead of silently returning the app shell
+    // with a 200. Unknown routes *without* a file extension still fall back
+    // to index.html so a mistyped or bookmarked path still shows the app.
+    const assetRes = await env.ASSETS.fetch(request);
+    if (assetRes.status === 404 && !url.pathname.slice(1).includes('.')) {
+      return env.ASSETS.fetch(new Request(new URL('/', url), request));
+    }
+    return assetRes;
   },
 };
 
-async function handleChat(request, env) {
+async function handleChat(request, env, ctx) {
   if (!env.GOOGLE_AI_API_KEY) {
     return jsonError(503, 'GOOGLE_AI_API_KEY not configured. Set via `wrangler secret put GOOGLE_AI_API_KEY`.');
+  }
+
+  // Per-IP rate limit — Cloudflare's native limiter. Stops a single client
+  // from hammering the shared Gemini key; a real conversation never gets close.
+  const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
+  const { success: withinIPLimit } = await env.CHAT_RATE_LIMITER.limit({ key: clientIP });
+  if (!withinIPLimit) {
+    return jsonError(429, 'Too many requests — slow down and try again in a minute.');
+  }
+
+  // Daily global cap — a KV counter keyed by UTC date. KV has no atomic
+  // increment, so the count can lag slightly under concurrency; that's fine
+  // for a soft ceiling. Reads fail open so a transient KV blip never takes
+  // the chat down — the per-IP limiter above is the real-time guard.
+  const dayKey = `daily:${new Date().toISOString().slice(0, 10)}`;
+  let dailyCount = 0;
+  try {
+    dailyCount = parseInt(await env.RATE_LIMIT_KV.get(dayKey), 10) || 0;
+  } catch {
+    dailyCount = 0;
+  }
+  if (dailyCount >= DAILY_REQUEST_CAP) {
+    return jsonError(429, "The site has hit today's request limit. Please try again tomorrow.");
   }
 
   let body;
@@ -90,6 +128,12 @@ async function handleChat(request, env) {
   if (contents.length === 0) {
     return jsonError(400, 'No valid user/assistant messages found');
   }
+
+  // Valid request — count it against the daily cap. The write-back is
+  // non-blocking so it never adds latency to the response.
+  ctx.waitUntil(
+    env.RATE_LIMIT_KV.put(dayKey, String(dailyCount + 1), { expirationTtl: 172800 }).catch(() => {}),
+  );
 
   const upstream = `${GOOGLE_HOST}/v1beta/models/${MODEL}:streamGenerateContent?alt=sse&key=${env.GOOGLE_AI_API_KEY}`;
 
